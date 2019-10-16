@@ -13,7 +13,7 @@ click button.
 Read values.
 
 
-#Data source
+# Data source
 This program recieves currency rate information from:
 https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
 
