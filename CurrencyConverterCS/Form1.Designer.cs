@@ -52,7 +52,10 @@
             // 
             // xFrom
             // 
+            this.xFrom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.xFrom.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.xFrom.FormattingEnabled = true;
+            this.xFrom.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.xFrom.Location = new System.Drawing.Point(210, 61);
             this.xFrom.Name = "xFrom";
             this.xFrom.Size = new System.Drawing.Size(130, 24);
@@ -60,6 +63,7 @@
             // 
             // xTo
             // 
+            this.xTo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.xTo.FormattingEnabled = true;
             this.xTo.Location = new System.Drawing.Point(425, 61);
             this.xTo.Name = "xTo";
@@ -158,7 +162,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(687, 451);
+            this.ClientSize = new System.Drawing.Size(724, 451);
             this.Controls.Add(this.updateLbl);
             this.Controls.Add(this.errorLbl);
             this.Controls.Add(this.fromToToLbl);

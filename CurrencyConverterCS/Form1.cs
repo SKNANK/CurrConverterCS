@@ -42,8 +42,8 @@ namespace CurrencyConverterCS
                     }
                 }
             }
-            
-            
+
+
         }
 
         // Search method called on click
@@ -66,22 +66,29 @@ namespace CurrencyConverterCS
                         y = childSearch(node, xTo);
                     }
                 }
-
-                // Calls converter class to calculate values
-                CurrencyConverter convert = new CurrencyConverter();
-                try
+                if (x != null && y !=null)
                 {
-                    result = convert.Calculate(float.Parse(xInput.Text), x, y);
-                    singleRes = convert.Calculate(1, x, y);
-                    reverseRes = convert.Calculate(1, y, x);
+                    // Calls converter class to calculate values
+                    CurrencyConverter convert = new CurrencyConverter();
+                    try
+                    {
+                        result = convert.Calculate(float.Parse(xInput.Text), x, y);
+                        singleRes = convert.Calculate(1, x, y);
+                        reverseRes = convert.Calculate(1, y, x);
 
-                    resultDisplay(result, singleRes, reverseRes, x, y);
-                }
-                catch (Exception e)
-                {
-                    errorLbl.Text = "Input amount is invalid";
+                        resultDisplay(result, singleRes, reverseRes, x, y);
+                    }
+                    catch (Exception e)
+                    {
+                        errorLbl.Text = "Input amount is invalid";
+                    }
+
                 }
 
+            }
+            else
+            {
+                errorLbl.Text = "Input amount is invalid";
             }
 
         }
@@ -99,23 +106,31 @@ namespace CurrencyConverterCS
         Currency childSearch(XmlNode node, ComboBox comboBox)
         {
             Currency currency = new Currency();
-            foreach (XmlNode child in node.FirstChild.ChildNodes)
+            try
             {
-                string currencyCode = child.Attributes[0].InnerText;
-                if (currencyCode.Equals(comboBox.SelectedItem.ToString()))
+                foreach (XmlNode child in node.FirstChild.ChildNodes)
                 {
-                    currency.currCode = currencyCode;
-                    currency.rate = float.Parse(child.Attributes[1].InnerText);
+                    string currencyCode = child.Attributes[0].InnerText;
+                    if (currencyCode.Equals(comboBox.SelectedItem.ToString()))
+                    {
+                        currency.currCode = currencyCode;
+                        currency.rate = float.Parse(child.Attributes[1].InnerText);
 
-                    return currency;
-                }
-                else if (comboBox.SelectedItem.Equals("EUR"))
-                {
-                    currency.currCode = "EUR";
-                    currency.rate = 1.00f;
+                        return currency;
+                    }
+                    else if (comboBox.SelectedItem.Equals("EUR"))
+                    {
+                        currency.currCode = "EUR";
+                        currency.rate = 1.00f;
 
-                    return currency;
+                        return currency;
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                errorLbl.Text = "Please select currencies.";
+                return null;
             }
             return currency;
         }
